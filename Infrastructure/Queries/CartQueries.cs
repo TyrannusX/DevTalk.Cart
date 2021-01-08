@@ -27,7 +27,7 @@ namespace Infrastructure.Queries
                         JOIN CartProducts as cp ON c.Cartid = cp.CartId
                         JOIN Customers as cus ON c.CustomerId = cus.CustomerId";
 
-            using (var connection = new SqlConnection("Data Source=reyes-devtalk.database.windows.net;Initial Catalog=Carts;Integrated Security=False;User Id=robertreyes22;Password=&JF760@2dTd&;Encrypt=True;TrustServerCertificate=False;MultipleActiveResultSets=True"))
+            using (var connection = new SqlConnection(_configuration["CartsConnectionString"]))
             {
                 var result = await connection.QueryAsync<Cart, CartProduct, Customer, Cart>(sql, (cart, cartProduct, customer) =>
                 {
@@ -62,7 +62,7 @@ namespace Infrastructure.Queries
                         JOIN Customers as cus ON c.CustomerId = cus.CustomerId
                         WHERE c.CartId = @Id";
 
-            using (var connection = new SqlConnection("Data Source=reyes-devtalk.database.windows.net;Initial Catalog=Carts;Integrated Security=False;User Id=robertreyes22;Password=&JF760@2dTd&;Encrypt=True;TrustServerCertificate=False;MultipleActiveResultSets=True"))
+            using (var connection = new SqlConnection(_configuration["CartsConnectionString"]))
             {
                 var result = await connection.QueryAsync<Cart, CartProduct, Customer, Cart>(sql, (cart, cartProduct, customer) =>
                 {

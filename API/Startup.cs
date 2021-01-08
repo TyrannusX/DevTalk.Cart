@@ -45,7 +45,7 @@ namespace API
             services.AddControllers();
 
             //DB
-            services.AddDbContext<CartDbContext>(x => x.UseSqlServer(@"Data Source=reyes-devtalk.database.windows.net;Initial Catalog=Carts;Integrated Security=False;User Id=robertreyes22;Password=&JF760@2dTd&;Encrypt=True;TrustServerCertificate=False;MultipleActiveResultSets=True", y => y.MigrationsAssembly("API")));
+            services.AddDbContext<CartDbContext>(x => x.UseSqlServer(Configuration["CartsConnectionString"], y => y.MigrationsAssembly("API")));
             services.AddScoped<IDbContext, CartDbContext>();
 
             //Dapper queries
